@@ -1,0 +1,25 @@
+[user]
+	name = Jesse Wang
+	email = jesse21532@gmail.com
+	username = jesse-wang0
+[init]
+	defaultBranch = main
+[alias]
+	#############
+	s = status -sb
+	a = add
+	c = commit
+	cm = commit -m
+	ca = commit --amend
+	rmf = rm -f
+	#############
+	pl = pull
+	ps = push
+	#############
+	d = diff
+	#############
+	co = checkout
+	br = branch
+	#############
+	l = log --oneline --graph --decorate
+	hist = log --pretty=format:"%C(yellow)%h%Creset %ad | %s%Cgreen%d%Creset [%an]" --graph --date=short
