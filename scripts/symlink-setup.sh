@@ -7,6 +7,8 @@ DOTFILES_DIR=~/.dotfiles
 declare -A DOTFILES=(
     [git/.gitconfig]="$HOME/.gitconfig"
     [zsh/.zshrc]="$HOME/.zshrc"
+    [p10k/.p10k.zsh]="$HOME/.p10k.zsh"
+    [conda/.condarc]="$HOME/.condarc"
 )
 
 echo "Setting up dotfile symlinks..."
