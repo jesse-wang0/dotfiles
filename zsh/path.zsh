@@ -1,3 +1,6 @@
+# Before modifying PATH                                                                                        
+[[ -d "/usr/local/bin" ]] || mkdir -p "/usr/local/bin"  
+
 # PATH configuration
 export PATH="/usr/local/bin:$PATH"
 

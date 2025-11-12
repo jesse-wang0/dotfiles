@@ -4,23 +4,23 @@
 DOTFILES_DIR=~/.dotfiles
 
 # List of dotfiles to symlink - add new entries here following the pattern
-declare -A DOTFILES=(
-    [git/.gitconfig]="$HOME/.gitconfig"
-    [zsh/.zshrc]="$HOME/.zshrc"
-    [p10k/.p10k.zsh]="$HOME/.p10k.zsh"
-    [conda/.condarc]="$HOME/.condarc"
+DOTFILES=(
+    "git/.gitconfig:$HOME/.gitconfig"
+    "zsh/.zshrc:$HOME/.zshrc"
+    "p10k/.p10k.zsh:$HOME/.p10k.zsh"
+    "conda/.condarc:$HOME/.condarc"
 )
 
 echo "Setting up dotfile symlinks..."
-for file in "${!DOTFILES[@]}"; do
-    target="${DOTFILES[$file]}"
-    echo "Linking $DOTFILES_DIR/$file to $target"
+
+for entry in "${DOTFILES[@]}"; do
+    src="${entry%%:*}"
+    target="${entry##*:}"
     
-    # Create parent directory if needed
+    echo "Linking $DOTFILES_DIR/$src to $target"
+    
     mkdir -p "$(dirname "$target")"
-    
-    # Create symlink (-sf: force overwrite, -n: treat LINK_NAME as normal file if it's a symlink)
-    ln -sfn "$DOTFILES_DIR/$file" "$target"
+    ln -sfn "$DOTFILES_DIR/$src" "$target"
 done
 
 echo "Symlink setup complete!"
