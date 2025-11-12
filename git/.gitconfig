@@ -22,4 +22,5 @@
 	br = branch
 	#############
 	l = log --oneline --graph --decorate
-	hist = log --pretty=format:"%C(yellow)%h%Creset %ad | %s%Cgreen%d%Creset [%an]" --graph --date=short
+    hist = log --pretty=format:\"%C(yellow)%h%Creset %ad | %s%Cgreen%d%Creset [%an]\" --graph --date=short
+
