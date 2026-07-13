@@ -1,5 +1,6 @@
 #############
 alias ls='ls -aGlh'
+
 #############
 alias ca='conda activate'
 alias cdv='conda deactivate'
