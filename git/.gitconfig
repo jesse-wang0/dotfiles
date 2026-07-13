@@ -1,7 +1,6 @@
-[user]
-	name = Jesse Wang
-	email = jesse21532@gmail.com
-	username = jesse-wang0
+[include]
+	path = ~/.dotfiles/git/.gitconfig.local
+
 [init]
 	defaultBranch = main
 [alias]
@@ -11,16 +10,17 @@
 	c = commit
 	cm = commit -m
 	ca = commit --amend
-	rmf = rm -f
 	#############
-	pl = pull
+	pl = pull --rebase
 	ps = push
+	pfl = push --force-with-lease
 	#############
 	d = diff
 	#############
 	co = checkout
-	br = branch
+	cob = checkout -b
+	br = for-each-ref --sort=-committerdate --format="%(committerdate:relative)%09%(objectname:short)%09%(refname:short)" refs/heads
+	wt = worktree
 	#############
 	l = log --oneline --graph --decorate
-    hist = log --pretty=format:\"%C(yellow)%h%Creset %ad | %s%Cgreen%d%Creset [%an]\" --graph --date=short
-
+	hist = log --pretty=format:\"%C(yellow)%h%Creset %ad | %s%Cgreen%d%Creset [%an]\" --graph --date=short
