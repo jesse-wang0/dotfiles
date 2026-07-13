@@ -11,11 +11,6 @@ DOTFILES=(
     "conda/.condarc:$HOME/.condarc"
 )
 
-RETIRED_TARGETS=(
-    "$HOME/.p10k.zsh"
-    "$HOME/.aider.conf.yml"
-)
-
 link_file() {
     local src_rel="$1"
     local target="$2"
@@ -49,24 +44,6 @@ link_file() {
     ln -s "$source" "$target"
 }
 
-cleanup_retired_target() {
-    local target="$1"
-
-    if [[ ! -L "$target" ]]; then
-        return
-    fi
-
-    local current_target
-    current_target="$(readlink "$target")"
-
-    case "$current_target" in
-        "$DOTFILES_DIR"/aider/*|"$DOTFILES_DIR"/p10k/*)
-            echo "Removing retired symlink: $target"
-            rm "$target"
-            ;;
-    esac
-}
-
 echo "Setting up dotfile symlinks..."
 
 for entry in "${DOTFILES[@]}"; do
@@ -74,10 +51,6 @@ for entry in "${DOTFILES[@]}"; do
     target="${entry##*:}"
 
     link_file "$src" "$target"
-done
-
-for target in "${RETIRED_TARGETS[@]}"; do
-    cleanup_retired_target "$target"
 done
 
 echo "Symlink setup complete!"

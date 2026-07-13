@@ -1,7 +1,6 @@
-[user]
-	name = Jesse Wang
-	email = jesse21532@gmail.com
-	username = jesse-wang0
+[include]
+	path = ~/.gitconfig.local
+
 [init]
 	defaultBranch = main
 [alias]
@@ -24,4 +23,4 @@
 	wt = worktree
 	#############
 	l = log --oneline --graph --decorate
-    hist = log --pretty=format:\"%C(yellow)%h%Creset %ad | %s%Cgreen%d%Creset [%an]\" --graph --date=short
+	hist = log --pretty=format:\"%C(yellow)%h%Creset %ad | %s%Cgreen%d%Creset [%an]\" --graph --date=short
