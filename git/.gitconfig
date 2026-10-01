@@ -1,26 +1,45 @@
 [include]
 	path = ~/.dotfiles/git/.gitconfig.local
-
 [init]
 	defaultBranch = main
+[core]
+    autocrlf = input
+    longpaths = true
+[fetch]
+    prune = true
+[push]
+    autoSetupRemote = true
+[pull]
+    rebase = true
 [alias]
 	#############
-	s = status -sb
+	s = status -b
 	a = add
-	c = commit
-	cm = commit -m
-	ca = commit --amend
+    c = commit
+    cm = c -m
+    ca = c --amend
 	#############
 	pl = pull --rebase
 	ps = push
-	pfl = push --force-with-lease
+	pfl = ps --force-with-lease
 	#############
 	d = diff
-	#############
-	co = checkout
-	cob = checkout -b
-	br = for-each-ref --sort=-committerdate --format="%(committerdate:relative)%09%(objectname:short)%09%(refname:short)" refs/heads
-	wt = worktree
-	#############
+    comp = "!f() {git log \"$1..HEAD\" --oneline --no-merges; }; f"
+    diffb = "!f() { git diff \"$1..HEAD\" --stat; }; f"
 	l = log --oneline --graph --decorate
 	hist = log --pretty=format:\"%C(yellow)%h%Creset %ad | %s%Cgreen%d%Creset [%an]\" --graph --date=short
+	#############
+	co = checkout
+	cob = co -b
+	br = branch
+    bd = br -d
+	brd = for-each-ref --sort=-committerdate --format="%(committerdate:relative)%09%(objectname:short)%09%(refname:short)" refs/heads
+	wt = worktree
+    fo = "!f() { git fetch origin $1; }; f"
+    mo = "!f() { git m origin/$1; }; f"
+    m  = merge
+    mfo = "!f() { git fo $1 && git mo $1; }; f"
+	#############
+    rh = reset --hard
+    nuke = "!f() { git fetch origin && git reset --hard origin/$(git branch --show-current); }; f"
+
